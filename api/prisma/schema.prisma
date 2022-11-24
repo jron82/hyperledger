@@ -19,25 +19,16 @@ model Session {
 }
 
 model User {
-  id                String              @id @default(cuid())
-  name              String?
-  email             String?             @unique
-  emailVerified     DateTime?
-  role              Role                @default(ADMIN)
-  sessions          Session[]
-  Invoice           Invoice[]
-  Expense           Expense[]
-  TaxPayment        TaxPayment[]
-  VerificationToken VerificationToken[]
-}
-
-model VerificationToken {
-  userId  String
-  token   String
-  expires DateTime
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([token])
+  id         String       @id @default(cuid())
+  name       String?
+  email      String       @unique
+  password   String
+  salt       String
+  role       Role         @default(ADMIN)
+  sessions   Session[]
+  Invoice    Invoice[]
+  Expense    Expense[]
+  TaxPayment TaxPayment[]
 }
 
 model Invoice {

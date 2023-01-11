@@ -5,6 +5,21 @@ export default class Invoice extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
+  @column()
+  public clientId: number
+
+  @column()
+  public amount: number
+
+  @column()
+  public description: string
+
+  @column()
+  public emailSent: boolean
+
+  @column.dateTime({ autoCreate: false })
+  public paidAt: DateTime
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
